@@ -44,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profilePicture()
+    {
+        return ($this->profile_picture) ? $this->profile_picture : "https://eu.ui-avatars.com/api/?size=200&name=" . $this->name;
+    }
 }

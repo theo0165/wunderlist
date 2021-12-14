@@ -6,7 +6,7 @@
         <div class="col-8">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <img class="rounded-circle" src="{{ $user->profile_picture ?? "https://eu.ui-avatars.com/api/?size=200&name=" . $user->name }}" style="width:200px;height:200px;object-fit:cover;">
+                    <img class="rounded-circle" src="{{ $user->profilePicture() }}" style="width:200px;height:200px;object-fit:cover;">
                 </div>
             </div>
             <div class="row">
