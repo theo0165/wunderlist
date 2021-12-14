@@ -6,7 +6,7 @@
         <div class="col-8">
             <div class="row">
                 <div class="col-4 d-flex justify-content-center">
-                    <img class="rounded-circle" src="{{ $user->profile_picture ?? "https://via.placeholder.com/100x100" }}" style="width:100px;object-fit:cover;">
+                    <img class="rounded-circle" src="{{ $user->profile_picture ?? "https://via.placeholder.com/100x100" }}" style="width:100px;height:100px;object-fit:cover;">
                 </div>
                 <div class="col-8 d-flex align-items-center">
                     <h3>{{ $user->name }}</h3>

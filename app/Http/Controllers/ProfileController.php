@@ -27,8 +27,16 @@ class ProfileController extends Controller
             $data = request()->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . Auth::user()->id], //Ignore unique check for current user
-                'profile_picture' => ['file', 'image']
+                'profile_picture' => ['image']
             ]);
+
+            if (request()->has('profile_picture')) {
+                $imagePath = request('profile_picture')->store('uploads/profile', 'public');
+
+                $data['profile_picture'] = "/storage/" . $imagePath;
+
+                Auth::user()->update($data);
+            }
 
             Auth::user()->update($data);
 
