@@ -19,19 +19,34 @@
                     <div class="form-group row pt-3">
                         <label for="name" class="col-4 col-form-label">Name</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" id="name" value="{{ $user->name }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') ?? $user->name }}">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row pt-3">
                         <label for="email" class="col-4 col-form-label">Email</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" id="email" value="{{ $user->email }}">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') ?? $user->email }}">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row pt-3">
                         <label for="profile_picture" class="col-4 col-form-label">Profile picture</label>
                         <div class="col-8">
-                            <input type="file" class="form-control" id="profile_picture">
+                            <input type="file" class="form-control @error('profile_picture') is-invalid @enderror" id="profile_picture">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Update</button>
@@ -41,13 +56,23 @@
                     <div class="form-group row pt-3">
                         <label for="oldpassword" class="col-4 col-form-label">Old password</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" id="oldpassword">
+                            <input type="text" class="form-control @error('oldpassword') is-invalid @enderror" id="oldpassword">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row pt-3">
                         <label for="newpassword" class="col-4 col-form-label">New password</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" id="newpassword">
+                            <input type="text" class="form-control @error('newpassword') is-invalid @enderror" id="newpassword">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Update</button>
