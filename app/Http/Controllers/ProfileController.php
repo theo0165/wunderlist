@@ -30,7 +30,9 @@ class ProfileController extends Controller
                 'profile_picture' => ['file', 'image']
             ]);
 
-            dd($data);
+            Auth::user()->update($data);
+
+            return redirect("/profile");
         } else if (request()->has('password_update')) {
             dd("Password Update");
         } else {
