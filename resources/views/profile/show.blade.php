@@ -5,10 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <div class="row">
-                <div class="col-4 d-flex justify-content-center">
-                    <img class="rounded-circle" src="{{ $user->profile_picture ?? "https://via.placeholder.com/100x100" }}" style="width:100px;height:100px;object-fit:cover;">
+                <div class="col-12 d-flex justify-content-center">
+                    <img class="rounded-circle" src="{{ $user->profile_picture ?? "https://eu.ui-avatars.com/api/?size=200&name=" . $user->name }}" style="width:200px;height:200px;object-fit:cover;">
                 </div>
-                <div class="col-8 d-flex align-items-center">
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center pt-4">
                     <h3>{{ $user->name }}</h3>
                 </div>
             </div>
@@ -115,6 +117,10 @@
                     <div class="row pt-3">
                         <div class="col-4">Uncompleted items</div>
                         <div class="col-8">2</div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-4">Account created</div>
+                        <div class="col-8">{{ $user->created_at->format('j F Y') }}</div>
                     </div>
                 </div>
             </div>
