@@ -20,4 +20,21 @@ class ProfileController extends Controller
             'user' => Auth::user()
         ]);
     }
+
+    public function update()
+    {
+        if (request()->has('user_update')) {
+            $data = request()->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . Auth::user()->id], //Ignore unique check for current user
+                'profile_picture' => ['file', 'image']
+            ]);
+
+            dd($data);
+        } else if (request()->has('password_update')) {
+            dd("Password Update");
+        } else {
+            dd("No form");
+        }
+    }
 }
