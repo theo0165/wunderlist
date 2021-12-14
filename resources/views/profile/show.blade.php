@@ -12,8 +12,18 @@
                     <h3>{{ $user->name }}</h3>
                 </div>
             </div>
-            <hr>
+            <hr class="mb-4 mt-4">
             <div class="row">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <form action="/profile/update" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PATCH")
@@ -60,7 +70,7 @@
                     <div class="form-group row pt-3">
                         <label for="oldpassword" class="col-4 col-form-label">Old password</label>
                         <div class="col-8">
-                            <input type="text" name="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" id="oldpassword">
+                            <input type="password" name="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" id="oldpassword">
                             @error('oldpassword')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -71,8 +81,19 @@
                     <div class="form-group row pt-3">
                         <label for="newpassword" class="col-4 col-form-label">New password</label>
                         <div class="col-8">
-                            <input type="text" name="newpassword" class="form-control @error('newpassword') is-invalid @enderror" id="newpassword">
+                            <input type="password" name="newpassword" class="form-control @error('newpassword') is-invalid @enderror" id="newpassword">
                             @error('newpassword')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row pt-3">
+                        <label for="newpassword_confirmation" class="col-4 col-form-label">Confirm new password</label>
+                        <div class="col-8">
+                            <input type="password" name="newpassword_confirmation" class="form-control @error('newpassword_confirmation') is-invalid @enderror" id="newpassword_confirmation">
+                            @error('newpassword_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
