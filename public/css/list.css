@@ -21,6 +21,14 @@ form {
   cursor: pointer;
 }
 
+.task-actions a {
+  color: black;
+}
+
+.task-actions a:hover {
+  color: #0a58ca;
+}
+
 .task-deadline {
   color: #949697;
 }

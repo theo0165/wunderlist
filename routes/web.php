@@ -29,11 +29,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.patch');
 
+Route::get('/list/new', [NewListController::class, 'show'])->name('newList.show');
+Route::post('/list/new', [NewListController::class, 'store'])->name('newList.store');
+
 Route::get('/list/{id}', [ListController::class, 'show'])->name('list.show');
 Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show');
-
-Route::get('/new-list', [NewListController::class, 'show'])->name('newList.show');
-Route::post('/new-list', [NewListController::class, 'store'])->name('newList.store');
 
 // Auth routes
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');

@@ -1,0 +1,21 @@
+.list-actions svg {
+  margin: 0 7px;
+  cursor: pointer;
+}
+
+.list-actions a:hover {
+  color: #0a58ca;
+}
+
+.list-actions a {
+  color: black;
+}
+
+.list-title {
+  color: black;
+  text-decoration: none;
+}
+
+.list-item {
+  border-bottom: 1px solid #eee;
+}
