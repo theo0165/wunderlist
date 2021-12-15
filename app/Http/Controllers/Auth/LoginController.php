@@ -3,27 +3,27 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function show()
     {
-        $this->middleware('guest')->except('logout');
+        return view('auth.login');
+    }
+
+    public function store()
+    {
+        $data = request()->validate([
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+            'remember' => ['string']
+        ]);
+
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']], isset($data['remember']))) {
+            return redirect('/');
+        } else {
+            return redirect()->back()->withErrors(['invalid' => "Invalid credentials"]);
+        }
     }
 }
