@@ -29,3 +29,7 @@ Tested by the following people:
 
 1. Jane Doe
 2. John Doe
+
+Home -> Show all lists
+List -> Show single list
+Task -> Show single task

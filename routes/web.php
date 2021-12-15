@@ -4,7 +4,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListController;
+use App\Http\Controllers\NewController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +28,10 @@ Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, '
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.patch');
+
+Route::get('/list/{id}', [ListController::class, 'show'])->name('list.show');
+Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show');
+Route::get('/new', [NewController::class, 'show'])->name('new.show');
 
 // Auth routes
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
