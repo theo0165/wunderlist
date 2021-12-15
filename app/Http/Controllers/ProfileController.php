@@ -22,7 +22,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function update()
+    public function patch()
     {
         if (request()->has('user_update')) {
             $data = request()->validate([

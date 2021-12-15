@@ -23,4 +23,16 @@ class ListController extends Controller
             'tasks' => $tasks
         ]);
     }
+
+    public function edit(string $id)
+    {
+    }
+
+    public function patch(string $id)
+    {
+    }
+
+    public function delete(string $id)
+    {
+    }
 }

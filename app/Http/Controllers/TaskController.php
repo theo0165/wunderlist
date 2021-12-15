@@ -15,4 +15,12 @@ class TaskController extends Controller
     {
         return view('task.show');
     }
+
+    public function patch(string $id)
+    {
+    }
+
+    public function delete(string $id)
+    {
+    }
 }

@@ -16,16 +16,28 @@ form {
   width: 100%;
 }
 
-.task-actions svg {
+.list-title {
+  display: flex;
+  align-items: center;
+}
+
+.list-title h1 {
+  padding-right: 10px;
+}
+
+.task-actions svg,
+.list-title svg {
   margin: 0 7px;
   cursor: pointer;
 }
 
-.task-actions a {
+.task-actions a,
+.list-title a {
   color: black;
 }
 
-.task-actions a:hover {
+.task-actions a:hover,
+.list-title a:hover {
   color: #0a58ca;
 }
 
