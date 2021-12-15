@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 @endsection
 
+@section('scripts')
+    <script src="{{ asset('js/list.js') }}"></script>
+@endsection
+
 @section('content')
 <div class="container d-flex justify-content-center">
     <div class="col-6">
@@ -39,10 +43,13 @@
             @else
                 @foreach ($tasks as $task)
                     <form action="/task/{{ $task->uuid }}/delete" class="row mb-3 pb-3 task-container {{ $task->completed ? "completed" : "" }}">
+                        @csrf
+                        @method('patch')
+                        <input type="hidden" name="uuid" value="{{ $task->uuid }}">
+                        <input type="hidden" name="function" value="complete">
                         <div class="col-8 d-flex align-items-center">
                             <div class="row left-container">
                                 <div class="col-2 pr-0 d-flex justify-content-center align-items-center checkbox-container">
-                                    <input type="hidden" name="uuid" value="{{ $task->uuid }}">
                                     <input type="checkbox" name="completed" {{ $task->completed ? "checked" : "" }}>
                                 </div>
                                 <div class="col-10 pl-0 task-details">
