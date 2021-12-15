@@ -1,0 +1,26 @@
+.task-container input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox-container,
+.task-details {
+  padding: 0;
+}
+
+form {
+  border-bottom: 1px solid #eee;
+}
+
+.left-container {
+  width: 100%;
+}
+
+.task-actions svg {
+  margin: 0 7px;
+  cursor: pointer;
+}
+
+.task-deadline {
+  color: #949697;
+}
