@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListController;
-use App\Http\Controllers\NewController;
+use App\Http\Controllers\NewListController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +31,9 @@ Route::patch('/profile/update', [ProfileController::class, 'update'])->name('pro
 
 Route::get('/list/{id}', [ListController::class, 'show'])->name('list.show');
 Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show');
-Route::get('/new', [NewController::class, 'show'])->name('new.show');
+
+Route::get('/new-list', [NewListController::class, 'show'])->name('newList.show');
+Route::post('/new-list', [NewListController::class, 'store'])->name('newList.store');
 
 // Auth routes
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');

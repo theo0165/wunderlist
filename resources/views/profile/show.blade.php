@@ -26,7 +26,7 @@
                         {{ session('error') }}
                     </div>
                 @endif
-                <form action="/profile/update" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('profile.patch') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PATCH")
                     <h4>Update user information</h4>

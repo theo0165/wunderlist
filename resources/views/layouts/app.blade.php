@@ -52,8 +52,11 @@
                                 </li>
                             @endif
                         @else
+                            {{-- <li class="nav-item">
+                                <a class="nav-link" href="{{ route('newItem.show') }}">New Item</a>
+                            </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('new.show') }}">New Item</a>
+                                <a class="nav-link" href="{{ route('newList.show') }}">New List</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
