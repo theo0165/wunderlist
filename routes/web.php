@@ -30,18 +30,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::patch('/profile/edit', [ProfileController::class, 'patch'])->name('profile.patch');
 
-Route::get('/list/new', [NewListController::class, 'show'])->name('newList.show'); // Show page
-Route::post('/list/new', [NewListController::class, 'store'])->name('newList.store'); // Add new list
-Route::get('/list/{id}', [ListController::class, 'show'])->name('list.show'); // Show specific list
+Route::get('/list/new', [NewListController::class, 'show'])->name('newList.show'); // Show page COMPLETED
+Route::post('/list/new', [NewListController::class, 'store'])->name('newList.store'); // Add new list COMPLETED
+Route::get('/list/{id}', [ListController::class, 'show'])->name('list.show'); // Show specific list COMPLETED
 Route::get('/list/{id}/edit', [ListController::class, 'edit'])->name('list.edit'); // Show edit page
 Route::patch('/list/{id}/edit', [ListController::class, 'patch'])->name('list.patch'); // Edit title of list
-Route::patch('/list/{id}/delete', [ListController::class, 'delete'])->name('list.delete'); // Delete list
+Route::get('/list/{id}/delete', [ListController::class, 'delete'])->name('list.delete'); // Delete list
 
-Route::get('/task/new', [NewTaskController::class, 'show'])->name('newTask.show'); // Show single task
-Route::post('/task/new', [NewTaskController::class, 'store'])->name('newTask.store'); // Create new task
+Route::get('/task/new', [NewTaskController::class, 'show'])->name('newTask.show'); // Show single task COMPLETED
+Route::post('/task/new', [NewTaskController::class, 'store'])->name('newTask.store'); // Create new task COMPLETED
 Route::get('/task/{id}/edit', [TaskController::class, 'show'])->name('task.show'); // Show edit page
 Route::patch('/task/{id}/edit', [TaskController::class, 'patch'])->name('task.patch'); // Edit variables of task
-Route::patch('/task/{id}/delete', [TaskController::class, 'delete'])->name('task.delete'); // Delete task
+Route::get('/task/{id}/delete', [TaskController::class, 'delete'])->name('task.delete'); // Delete task
 
 // Auth routes
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');

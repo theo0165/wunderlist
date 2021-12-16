@@ -42,15 +42,17 @@
                 <h4 class="pt-3 d-flex justify-content-center">No tasks avalible, start by creating one above.</h4>
             @else
                 @foreach ($tasks as $task)
-                    <form action="/task/{{ $task->uuid }}/delete" class="row mb-3 pb-3 task-container {{ $task->completed ? "completed" : "" }}">
-                        @csrf
-                        @method('patch')
-                        <input type="hidden" name="uuid" value="{{ $task->uuid }}">
-                        <input type="hidden" name="function" value="complete">
+                    <div class="row mb-3 pb-3 task-container {{ $task->completed ? "completed" : "" }}">
                         <div class="col-8 d-flex align-items-center">
                             <div class="row left-container">
                                 <div class="col-2 pr-0 d-flex justify-content-center align-items-center checkbox-container">
-                                    <input type="checkbox" name="completed" {{ $task->completed ? "checked" : "" }}>
+                                    <form action="/task/{{ $task->uuid }}/edit" method="POST">
+                                        @csrf
+                                        @method('patch')
+                                        <input type="hidden" name="uuid" value="{{ $task->uuid }}">
+                                        <input type="hidden" name="function" value="complete">
+                                        <input type="checkbox" name="completed" {{ $task->completed ? "checked" : "" }}>
+                                    </form>
                                 </div>
                                 <div class="col-10 pl-0 task-details">
                                     <h5 class="task-name d-inline-block mb-0">{{ $task->title }}</h5>
@@ -80,7 +82,7 @@
                                 </a>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 @endforeach
             @endif
         </div>

@@ -34,5 +34,13 @@ class ListController extends Controller
 
     public function delete(string $id)
     {
+        $list = TodoList::where('uuid', '=', $id)->first();
+        if ($list != null) {
+            $list->delete();
+        } else {
+            return abort(404);
+        }
+
+        return redirect("/");
     }
 }
