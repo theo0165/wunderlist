@@ -46,9 +46,8 @@
                         <div class="col-8 d-flex align-items-center">
                             <div class="row left-container">
                                 <div class="col-2 pr-0 d-flex justify-content-center align-items-center checkbox-container">
-                                    <form action="/task/{{ $task->uuid }}/edit" method="POST">
+                                    <form action="/task/{{ $task->uuid }}/edit" method="POST" class="complete-form">
                                         @csrf
-                                        @method('patch')
                                         <input type="hidden" name="uuid" value="{{ $task->uuid }}">
                                         <input type="hidden" name="function" value="complete">
                                         <input type="checkbox" name="completed" {{ $task->completed ? "checked" : "" }}>

@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         return view('home', [
             'user' => Auth::user(),
-            'lists' => TodoList::all()
+            'lists' => TodoList::where('user_id', Auth::user()->id)->get()
         ]);
     }
 }

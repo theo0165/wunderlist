@@ -44,3 +44,8 @@
 .task-deadline {
   color: #949697;
 }
+
+.completed .left-container h5,
+.completed .left-container p {
+  text-decoration: line-through;
+}

@@ -9,6 +9,11 @@ class Task extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'title',
+        'completed'
+    ];
+
     public function todoList()
     {
         return $this->belongsTo(TodoList::Class);
