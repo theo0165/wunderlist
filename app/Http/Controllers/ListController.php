@@ -27,21 +27,33 @@ class ListController extends Controller
 
     public function edit(string $id)
     {
-        return view('list.edit', []);
+        $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+
+        return view('list.edit', [
+            'list' => $list
+        ]);
     }
 
     public function patch(string $id)
     {
+        if (request()->has('title')) {
+            $data = request()->validate([
+                'title' => ['string', 'max:255']
+            ]);
+
+            $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+            $list->update(['title' => $data['title']]);
+
+            return redirect(route('list.show', $id));
+        } else {
+            return abort('400');
+        }
     }
 
     public function delete(string $id)
     {
-        $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->first();
-        if ($list != null) {
-            $list->delete();
-        } else {
-            return abort(404);
-        }
+        $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+        $list->delete();
 
         return redirect("/");
     }

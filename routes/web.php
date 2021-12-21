@@ -33,8 +33,8 @@ Route::patch('/profile/edit', [ProfileController::class, 'patch'])->name('profil
 Route::get('/list/new', [NewListController::class, 'show'])->name('newList.show'); // Show page COMPLETED
 Route::post('/list/new', [NewListController::class, 'store'])->name('newList.store'); // Add new list COMPLETED
 Route::get('/list/{id}', [ListController::class, 'show'])->name('list.show'); // Show specific list COMPLETED
-Route::get('/list/{id}/edit', [ListController::class, 'edit'])->name('list.edit'); // Show edit page
-Route::patch('/list/{id}/edit', [ListController::class, 'patch'])->name('list.patch'); // Edit title of list
+Route::get('/list/{id}/edit', [ListController::class, 'edit'])->name('list.edit'); // Show edit page COMPLETED
+Route::patch('/list/{id}/edit', [ListController::class, 'patch'])->name('list.patch'); // Edit title of list COMPLETED
 Route::get('/list/{id}/delete', [ListController::class, 'delete'])->name('list.delete'); // Delete list COMPLETED
 
 Route::get('/task/new', [NewTaskController::class, 'show'])->name('newTask.show'); // Show single task COMPLETED
