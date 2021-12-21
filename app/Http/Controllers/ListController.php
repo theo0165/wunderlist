@@ -27,6 +27,7 @@ class ListController extends Controller
 
     public function edit(string $id)
     {
+        return view('list.edit', []);
     }
 
     public function patch(string $id)
