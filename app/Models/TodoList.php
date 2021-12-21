@@ -22,7 +22,7 @@ class TodoList extends Model
     // https://stackoverflow.com/a/5438778
     private static function generateUUID()
     {
-        $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_.";
+        $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
         $base = strlen($charset);
         $result = '';
 
