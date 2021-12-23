@@ -8,6 +8,8 @@
     <script src="{{ asset('js/list.js') }}"></script>
 @endsection
 
+<!-- TODO: Fix completed checkbox not working, fix delete not working -->
+
 @section('content')
 <div class="container d-flex justify-content-center">
     <div class="col-6">
@@ -62,7 +64,9 @@
                             </div>
                         </div>
                         <div class="col-4 pr-0 d-flex align-items-center justify-content-end">
-                            <p class="task-deadline d-inline-block mb-0">{{ date("d/m/y", strtotime($task->deadline)) }}</p>
+                            @if ($task->deadline != null)
+                                <p class="task-deadline d-inline-block mb-0">{{ date("d/m/y", strtotime($task->deadline)) }}</p>
+                            @endif
                             <div class="task-actions d-inline-block d-flex align-items-center">
                                 <a href="/task/{{$task->uuid}}/delete">
                                     <svg class="task-delete" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
