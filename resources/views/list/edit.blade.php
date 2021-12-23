@@ -10,7 +10,7 @@
                     @csrf
                     @method('PATCH')
 
-                    <div class="form-group row pt-3">
+                    <div class="form-group row pt-3 required">
                         <label for="title" class="col-4 col-form-label">Title</label>
                         <div class="col-8">
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ old('title') ?? $list->title }}" placeholder="My awesome list" autofocus>
