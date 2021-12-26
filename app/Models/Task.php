@@ -14,7 +14,8 @@ class Task extends Model
         'title',
         'description',
         'deadline',
-        'list_id'
+        'list_id',
+        'completed'
     ];
 
     public function todoList()
