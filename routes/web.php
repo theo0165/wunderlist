@@ -37,8 +37,8 @@ Route::get('/list/{id}/edit', [ListController::class, 'edit'])->name('list.edit'
 Route::patch('/list/{id}/edit', [ListController::class, 'patch'])->name('list.patch'); // Edit title of list COMPLETED
 Route::get('/list/{id}/delete', [ListController::class, 'delete'])->name('list.delete'); // Delete list COMPLETED
 
-Route::get('/task/new', [NewTaskController::class, 'show'])->name('newTask.show'); // Create new task page
-Route::post('/task/new', [NewTaskController::class, 'store'])->name('newTask.store'); // Create new task
+Route::get('/task/new', [NewTaskController::class, 'show'])->name('newTask.show'); // Create new task page COMPLETED
+Route::post('/task/new', [NewTaskController::class, 'store'])->name('newTask.store'); // Create new task COMPLETED
 Route::get('/task/{id}/edit', [TaskController::class, 'show'])->name('task.show'); // Show edit page
 Route::post('/task/{id}/edit', [TaskController::class, 'patch'])->name('task.patch'); // Edit variables of task
 Route::get('/task/{id}/delete', [TaskController::class, 'delete'])->name('task.delete'); // Delete task COMPLETED
