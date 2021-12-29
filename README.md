@@ -33,3 +33,7 @@ Tested by the following people:
 Home -> Show all lists
 List -> Show single list
 Task -> Show single task
+
+TODO: Tasks can not be completed when moving it to another list.
+TODO: Reset password
+TODO: Confirm email
