@@ -38,7 +38,10 @@ class TaskController extends Controller
 
     public function patch(string $id)
     {
-        $task = Task::select('*')->join('todo_lists', 'tasks.list_id', '=', 'todo_lists.id')->where('tasks.uuid', $id)->where('todo_lists.user_id', Auth::user()->id)->first();
+        $task = Task::select([
+            'tasks.*',
+            'todo_lists.user_id'
+        ])->join('todo_lists', 'tasks.list_id', '=', 'todo_lists.id')->where('tasks.uuid', $id)->where('todo_lists.user_id', Auth::user()->id)->first();
 
         if ($task === null) {
             return abort(404);
@@ -71,6 +74,14 @@ class TaskController extends Controller
                 'deadline' => $data['deadline'],
                 'list_id' => TodoList::where('uuid', $data['list'])->first('id')['id']
             ]);
+
+            /*
+            $task->title = $data['title'];
+            $task->description = $data['description'];
+            $task->deadline = $data['deadline'];
+            $task->list_id = TodoList::where('uuid', $data['list'])->first('id')['id'];
+            $task->save();
+            */
 
             return redirect()->back();
         } else {

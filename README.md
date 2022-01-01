@@ -34,6 +34,6 @@ Home -> Show all lists
 List -> Show single list
 Task -> Show single task
 
-TODO: Tasks can not be completed when moving it to another list.
+TODO: Tasks can not be deleted...
 TODO: Reset password
 TODO: Confirm email

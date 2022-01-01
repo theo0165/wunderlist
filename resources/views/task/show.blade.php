@@ -35,7 +35,14 @@
                     <div class="form-group row pt-3">
                         <label for="deadline" class="col-4 col-form-label">Deadline</label>
                         <div class="col-8">
-                            <input type="date" name="deadline" class="form-control @error('deadline') is-invalid @enderror" id="deadline" value="{{ old('deadline') ?? date('Y-m-d', strtotime($task->deadline)) }}" min="{{ date('Y-m-d') }}">
+                            @if (old('deadline'))
+                                <input type="date" name="deadline" class="form-control @error('deadline') is-invalid @enderror" id="deadline" value="{{ old('deadline') }}" min="{{ date('Y-m-d') }}">
+                            @elseif($task->deadline === null || $task->deadline === "null")
+                                <input type="date" name="deadline" class="form-control @error('deadline') is-invalid @enderror" id="deadline" min="{{ date('Y-m-d') }}">
+                            @else
+                                <input type="date" name="deadline" class="form-control @error('deadline') is-invalid @enderror" id="deadline" value="{{ date('Y-m-d', strtotime($task->deadline)) }}" min="{{ date('Y-m-d') }}">
+                            @endif
+
                             @error('deadline')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
