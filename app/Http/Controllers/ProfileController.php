@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\TodoList;
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +19,25 @@ class ProfileController extends Controller
 
     public function show()
     {
+        // This function will count completed tasks, uncompleted tasks and number of lists all in one query, amazing
+        $userId = Auth::user()->id;
+        $stats = (array) DB::select(
+            DB::raw("SELECT
+            count(case completed when '0' then 1 else null end) AS 'uncompleted',
+            count(case completed when '1' then 1 else null end) AS 'completed',
+            count(DISTINCT todo_lists.id) as 'lists'
+        FROM tasks
+        INNER JOIN todo_lists ON todo_lists.id = tasks.list_id
+        WHERE todo_lists.user_id = $userId;")
+        )[0];
+
         return view('profile.show', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'stats' => [
+                'lists' => $stats['lists'],
+                'completed' => $stats['completed'],
+                'uncompleted' => $stats['uncompleted']
+            ]
         ]);
     }
 

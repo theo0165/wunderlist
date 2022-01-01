@@ -108,15 +108,15 @@
                     <h4>Statistics</h4>
                     <div class="row pt-3">
                         <div class="col-4">Number of lists</div>
-                        <div class="col-8">123</div>
+                        <div class="col-8">{{ $stats['lists'] }}</div>
                     </div>
                     <div class="row pt-3">
                         <div class="col-4">Completed items</div>
-                        <div class="col-8">1</div>
+                        <div class="col-8">{{ $stats['completed'] }}</div>
                     </div>
                     <div class="row pt-3">
                         <div class="col-4">Uncompleted items</div>
-                        <div class="col-8">2</div>
+                        <div class="col-8">{{ $stats['uncompleted'] }}</div>
                     </div>
                     <div class="row pt-3">
                         <div class="col-4">Account created</div>
