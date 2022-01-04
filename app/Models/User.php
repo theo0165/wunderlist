@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return ($this->profile_picture) ? $this->profile_picture : "https://eu.ui-avatars.com/api/?size=200&name=" . $this->name;
     }
+
+    public function lists()
+    {
+        return $this->hasMany(TodoList::class, 'user_id', 'id');
+    }
 }

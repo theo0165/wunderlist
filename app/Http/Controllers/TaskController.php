@@ -93,7 +93,8 @@ class TaskController extends Controller
 
     public function delete(string $id)
     {
-        $task = Task::select('*')->join('todo_lists', 'tasks.list_id', "=", "todo_lists.id")->where('tasks.uuid', $id)->where('todo_lists.user_id', Auth::user()->id)->first();
+        $task = Task::select('tasks.*')->join('todo_lists', 'tasks.list_id', "=", "todo_lists.id")->where('tasks.uuid', $id)->where('todo_lists.user_id', Auth::user()->id)->first();
+
         if ($task != null) {
             $task->delete();
         } else {
