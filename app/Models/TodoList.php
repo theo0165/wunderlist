@@ -46,7 +46,7 @@ class TodoList extends Model
         });
     }
 
-    function tasks()
+    public function tasks()
     {
         return $this->hasMany(Task::class, 'list_id', 'id');
     }

@@ -49,7 +49,7 @@ class Task extends Model
         });
     }
 
-    function list()
+    public function list()
     {
         return $this->belongsTo(TodoList::class, 'list_id', 'id');
     }

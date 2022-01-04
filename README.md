@@ -34,9 +34,42 @@ Home -> Show all lists
 List -> Show single list
 Task -> Show single task
 
-TODO: Tasks can not be deleted...
 TODO: Reset password
 TODO: Confirm email
 TODO: Delete tasks when deleting list
 TODO: View all tasks on one page
 TODO: View all tasks with deadline today
+
+-   As a user I should be able to create an account. :white_check_mark:
+
+-   As a user I should be able to login. :white_check_mark:
+
+-   As a user I should be able to logout. :white_check_mark:
+
+-   As a user I should be able to edit my account email and password. :white_check_mark:
+
+-   As a user I should be able to upload a profile avatar image. :white_check_mark:
+
+-   As a user I should be able to create new tasks with title, description and deadline date. :white_check_mark:
+
+-   As a user I should be able to edit my tasks. :white_check_mark:
+
+-   As a user I should be able to delete my tasks. :white_check_mark:
+
+-   As a user I should be able to mark tasks as completed. :white_check_mark:
+
+-   As a user I should be able to mark tasks as uncompleted. :white_check_mark:
+
+-   As a user I'm able to create new task lists with title. :white_check_mark:
+
+-   As a user I'm able to edit my task lists. :white_check_mark:
+
+-   As a user I'm able to delete my task lists along with all tasks.
+
+-   As a user I'm able to add a task to a list. :white_check_mark:
+
+-   As a user I'm able to view all tasks.
+
+-   As a user I'm able to view all tasks within a list. :white_check_mark:
+
+-   As a user I'm able to view all tasks which should be completed today.
