@@ -37,3 +37,6 @@ Task -> Show single task
 TODO: Tasks can not be deleted...
 TODO: Reset password
 TODO: Confirm email
+TODO: Delete tasks when deleting list
+TODO: View all tasks on one page
+TODO: View all tasks with deadline today

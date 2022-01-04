@@ -48,4 +48,9 @@ class Task extends Model
             $query->uuid = self::generateUUID();
         });
     }
+
+    function list()
+    {
+        return $this->belongsTo(TodoList::class, 'list_id', 'id');
+    }
 }

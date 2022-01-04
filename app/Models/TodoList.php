@@ -45,4 +45,9 @@ class TodoList extends Model
             $query->user_id = Auth::user()->id;
         });
     }
+
+    function tasks()
+    {
+        return $this->hasMany(Task::class, 'list_id', 'id');
+    }
 }
