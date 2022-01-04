@@ -36,9 +36,7 @@ Task -> Show single task
 
 TODO: Reset password
 TODO: Confirm email
-TODO: Delete tasks when deleting list
-TODO: View all tasks on one page
-TODO: View all tasks with deadline today
+TODO: Tasks always comparing to GMT/UTC on todays deadline page...
 
 -   As a user I should be able to create an account. :white_check_mark:
 
@@ -64,7 +62,7 @@ TODO: View all tasks with deadline today
 
 -   As a user I'm able to edit my task lists. :white_check_mark:
 
--   As a user I'm able to delete my task lists along with all tasks.
+-   As a user I'm able to delete my task lists along with all tasks. :white_check_mark:
 
 -   As a user I'm able to add a task to a list. :white_check_mark:
 
@@ -72,4 +70,4 @@ TODO: View all tasks with deadline today
 
 -   As a user I'm able to view all tasks within a list. :white_check_mark:
 
--   As a user I'm able to view all tasks which should be completed today.
+-   As a user I'm able to view all tasks which should be completed today. :white_check_mark:

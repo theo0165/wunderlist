@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TodoList::class, 'user_id', 'id');
     }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, TodoList::class, 'user_id', 'list_id', 'id', 'id');
+    }
 }

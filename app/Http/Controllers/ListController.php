@@ -53,6 +53,12 @@ class ListController extends Controller
     public function delete(string $id)
     {
         $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+
+        # Delete all tasks when deleting list.
+        foreach ($list->tasks as $task) {
+            $task->delete();
+        }
+
         $list->delete();
 
         return redirect("/");

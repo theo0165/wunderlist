@@ -16,6 +16,13 @@ class TaskController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('task.index', [
+            'tasks' => Auth::user()->tasks
+        ]);
+    }
+
     public function show(string $id)
     {
         $task = Task::select([

@@ -55,6 +55,12 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('task.index') }}">All Task</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('today.index') }}">Deadline Today</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('newTask.show') }}">New Task</a>
                             </li>
                             <li class="nav-item">
