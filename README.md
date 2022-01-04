@@ -30,10 +30,6 @@ Tested by the following people:
 1. Jane Doe
 2. John Doe
 
-Home -> Show all lists
-List -> Show single list
-Task -> Show single task
-
 TODO: Reset password
 TODO: Confirm email
 TODO: Tasks always comparing to GMT/UTC on todays deadline page...
@@ -66,7 +62,7 @@ TODO: Tasks always comparing to GMT/UTC on todays deadline page...
 
 -   As a user I'm able to add a task to a list. :white_check_mark:
 
--   As a user I'm able to view all tasks.
+-   As a user I'm able to view all tasks. :white_check_mark:
 
 -   As a user I'm able to view all tasks within a list. :white_check_mark:
 
