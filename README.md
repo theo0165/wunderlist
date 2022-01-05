@@ -66,3 +66,9 @@ TODO: Make sure user creates todo list before task if a todo list does not exist
 -   As a user I'm able to view all tasks within a list. :white_check_mark:
 
 -   As a user I'm able to view all tasks which should be completed today. :white_check_mark:
+
+-   As a user I'm able to remove a task from a list. :white_check_mark:
+
+-   As a user I'm able to delete my account along with all tasks and lists. :white_check_mark:
+
+-   As a user I'm able to reset my password via email. :white_check_mark:
