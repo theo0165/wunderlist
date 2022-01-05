@@ -40,12 +40,12 @@ Route::get('/list/{id}/delete', [ListController::class, 'delete'])->name('list.d
 
 Route::get('/task/new', [NewTaskController::class, 'show'])->name('newTask.show'); // Create new task page COMPLETED
 Route::post('/task/new', [NewTaskController::class, 'store'])->name('newTask.store'); // Create new task COMPLETED
-Route::get('/task/{id}/edit', [TaskController::class, 'show'])->name('task.show'); // Show edit page
-Route::post('/task/{id}/edit', [TaskController::class, 'patch'])->name('task.patch'); // Edit variables of task
+Route::get('/task/{id}/edit', [TaskController::class, 'show'])->name('task.show'); // Show edit page COMPLETE
+Route::post('/task/{id}/edit', [TaskController::class, 'patch'])->name('task.patch'); // Edit variables of task COMPLETE
 Route::get('/task/{id}/delete', [TaskController::class, 'delete'])->name('task.delete'); // Delete task COMPLETED
 Route::get('/task/all', [TaskController::class, 'index'])->name('task.index'); // Show all tasks COMPLETED
 
-Route::get('/today', [TodayController::class, 'index'])->name('today.index'); // Show tasks with deadline today
+Route::get('/today', [TodayController::class, 'index'])->name('today.index'); // Show tasks with deadline today COMPLETE
 
 // Auth routes
 Route::get('/register', [RegisterController::class, 'show'])->name('register.show');

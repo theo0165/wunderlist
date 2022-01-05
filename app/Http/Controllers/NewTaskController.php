@@ -14,7 +14,7 @@ class NewTaskController extends Controller
     public function show()
     {
         return view('newTask.show', [
-            'lists' => TodoList::where('user_id', Auth::user()->id)->get(),
+            'lists' => Auth::user()->lists,
             'selectedList' => request()->query('list') ?? null
         ]);
     }

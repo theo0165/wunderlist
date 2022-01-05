@@ -18,10 +18,10 @@
             </div>
             <hr>
             <div class="col-12 mt-4">
-                @if (count($lists) === 0)
+                @if (count($user->lists) === 0)
                     <h4>No lists avalible, start by creating one <a href="{{ route('newList.store') }}">here</a>.</h4>
                 @else
-                    @foreach ($lists as $list)
+                    @foreach ($user->lists as $list)
                         <div class="row mb-3 pb-3 list-item">
                             <div class="col-10">
                                 <a href="/list/{{ $list->uuid }}" class="list-title"><h5>{{ $list->title }}</h5></a>

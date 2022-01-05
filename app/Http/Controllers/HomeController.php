@@ -26,8 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'user' => Auth::user(),
-            'lists' => TodoList::where('user_id', Auth::user()->id)->get()
+            'user' => Auth::user()
         ]);
     }
 }

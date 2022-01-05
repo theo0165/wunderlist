@@ -16,18 +16,17 @@ class ListController extends Controller
 
     public function show(string $id)
     {
-        $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
-        $tasks = Task::where('list_id', '=', $list->id)->get();
+        $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
 
         return view('list.show', [
             'list' => $list,
-            'tasks' => $tasks
+            'tasks' => $list->tasks
         ]);
     }
 
     public function edit(string $id)
     {
-        $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+        $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
 
         return view('list.edit', [
             'list' => $list
@@ -41,7 +40,7 @@ class ListController extends Controller
                 'title' => ['string', 'max:255']
             ]);
 
-            $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+            $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
             $list->update(['title' => $data['title']]);
 
             return redirect(route('list.show', $id));
@@ -52,7 +51,7 @@ class ListController extends Controller
 
     public function delete(string $id)
     {
-        $list = TodoList::where('uuid', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+        $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
 
         # Delete all tasks when deleting list.
         foreach ($list->tasks as $task) {

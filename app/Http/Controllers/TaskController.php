@@ -25,17 +25,7 @@ class TaskController extends Controller
 
     public function show(string $id)
     {
-        $task = Task::select([
-            'tasks.uuid',
-            'tasks.title',
-            'tasks.description',
-            'tasks.deadline',
-            'tasks.list_id'
-        ])->join('todo_lists', 'tasks.list_id', '=', 'todo_lists.id')->where('tasks.uuid', $id)->where('todo_lists.user_id', Auth::user()->id)->first();
-
-        if ($task === null) {
-            return abort(404);
-        }
+        $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();
 
         return view('task.show', [
             'task' => $task,
@@ -45,6 +35,7 @@ class TaskController extends Controller
 
     public function patch(string $id)
     {
+        //FIXME: Update to Eloquent relation?
         $task = Task::select([
             'tasks.*',
             'todo_lists.user_id'
@@ -82,14 +73,6 @@ class TaskController extends Controller
                 'list_id' => TodoList::where('uuid', $data['list'])->first('id')['id']
             ]);
 
-            /*
-            $task->title = $data['title'];
-            $task->description = $data['description'];
-            $task->deadline = $data['deadline'];
-            $task->list_id = TodoList::where('uuid', $data['list'])->first('id')['id'];
-            $task->save();
-            */
-
             return redirect()->back();
         } else {
             return abort(400);
@@ -100,13 +83,9 @@ class TaskController extends Controller
 
     public function delete(string $id)
     {
-        $task = Task::select('tasks.*')->join('todo_lists', 'tasks.list_id', "=", "todo_lists.id")->where('tasks.uuid', $id)->where('todo_lists.user_id', Auth::user()->id)->first();
+        $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();
 
-        if ($task != null) {
-            $task->delete();
-        } else {
-            return abort(404);
-        }
+        $task->delete();
 
         return redirect()->back();
     }
