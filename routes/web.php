@@ -30,6 +30,7 @@ Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, '
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 Route::patch('/profile/edit', [ProfileController::class, 'patch'])->name('profile.patch');
+Route::get('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete');
 
 Route::get('/list/new', [NewListController::class, 'show'])->name('newList.show'); // Show page COMPLETED
 Route::post('/list/new', [NewListController::class, 'store'])->name('newList.store'); // Add new list COMPLETED

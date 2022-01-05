@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('scripts')
+    <script src="{{ asset('js/profile.js') }}"></script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -122,6 +126,9 @@
                         <div class="col-4">Account created</div>
                         <div class="col-8">{{ $user->created_at->format('j F Y') }}</div>
                     </div>
+                </div>
+                <div class="actions pt-5">
+                    <a class="btn btn-danger" id="delete-btn" role="button" href="{{ route('profile.delete') }}">Delete account</a>
                 </div>
             </div>
         </div>

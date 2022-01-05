@@ -33,6 +33,7 @@ Tested by the following people:
 TODO: Reset password
 TODO: Confirm email
 TODO: Tasks always comparing to GMT/UTC on todays deadline page...
+TODO: Make sure user creates todo list before task if a todo list does not exist
 
 -   As a user I should be able to create an account. :white_check_mark:
 

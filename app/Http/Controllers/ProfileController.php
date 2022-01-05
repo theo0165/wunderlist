@@ -74,4 +74,21 @@ class ProfileController extends Controller
             return redirect("/profile")->with('error', 'Something went wrong, please try again later.');
         }
     }
+
+    public function delete()
+    {
+        $user = Auth::user();
+
+        foreach ($user->tasks as $task) {
+            $task->delete();
+        }
+
+        foreach ($user->lists as $list) {
+            $list->delete();
+        }
+
+        $user->delete();
+
+        return redirect("/");
+    }
 }
