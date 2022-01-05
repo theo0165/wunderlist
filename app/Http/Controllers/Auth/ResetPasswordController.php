@@ -32,6 +32,8 @@ class ResetPasswordController extends Controller
             'password' => Hash::make($data['password'])
         ]);
 
+        $resetData->delete();
+
         return redirect('/login')->with('password_reset', 'Password has been reset!');
     }
 }
