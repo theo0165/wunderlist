@@ -16,7 +16,12 @@ class TodoList extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'list_id', 'id');
     }
 
     // https://stackoverflow.com/a/5438778
@@ -44,10 +49,5 @@ class TodoList extends Model
             $query->uuid = self::generateUUID();
             $query->user_id = Auth::user()->id;
         });
-    }
-
-    public function tasks()
-    {
-        return $this->hasMany(Task::class, 'list_id', 'id');
     }
 }

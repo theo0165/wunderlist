@@ -35,11 +35,7 @@ class TaskController extends Controller
 
     public function patch(string $id)
     {
-        //FIXME: Update to Eloquent relation?
-        $task = Task::select([
-            'tasks.*',
-            'todo_lists.user_id'
-        ])->join('todo_lists', 'tasks.list_id', '=', 'todo_lists.id')->where('tasks.uuid', $id)->where('todo_lists.user_id', Auth::user()->id)->first();
+        $task = Auth::user()->tasks()->firstOrFail(['tasks.*', 'todo_lists.user_id']);
 
         if ($task === null) {
             return abort(404);
