@@ -29,7 +29,7 @@ class TaskController extends Controller
 
         return view('task.show', [
             'task' => $task,
-            'lists' => TodoList::where('user_id', Auth::user()->id)->get()
+            'lists' => Auth::user()->lists
         ]);
     }
 
