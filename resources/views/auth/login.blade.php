@@ -11,6 +11,12 @@
                     <form method="POST" action="{{ route('login.store') }}">
                         @csrf
 
+                        @if(session()->has('password_reset'))
+                            <div class="alert alert-success">
+                                {{ session()->get('password_reset') }}
+                            </div>
+                        @endif
+
                         @foreach ($errors->get('invalid') as $message)
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -63,8 +69,8 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                @if (Route::has('forgotPassword.show'))
+                                    <a class="btn btn-link" href="{{ route('forgotPassword.show') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif

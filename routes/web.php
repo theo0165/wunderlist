@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\NewListController;
@@ -56,3 +58,9 @@ Route::get('/login', [LoginController::class, 'show'])->name('login.show');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 
 Route::post('/logout', [LogoutController::class, 'post'])->name('logout');
+
+Route::get('/forgot_password', [ForgotPasswordController::class, 'show'])->name('forgotPassword.show');
+Route::post('/forgot_password/send', [ForgotPasswordController::class, 'send'])->name('forgotPassword.send');
+
+Route::get('/reset_password/{token}', [ResetPasswordController::class, 'show'])->name('password.show');
+Route::post('/reset_password', [ResetPasswordController::class, 'update'])->name('password.update');
