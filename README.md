@@ -31,7 +31,10 @@ Tested by the following people:
 2. John Doe
 
 TODO: Tasks always comparing to GMT/UTC on todays deadline page...
-TODO: Make sure user creates todo list before task if a todo list does not exist
+
+TODO: Mobile optimization.
+
+TODO: Comment code, ensure strict types, etc.
 
 -   As a user I should be able to create an account. :white_check_mark:
 

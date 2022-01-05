@@ -8,8 +8,6 @@
     <script src="{{ asset('js/list.js') }}"></script>
 @endsection
 
-<!-- TODO: Fix completed checkbox not working, fix delete not working -->
-
 @section('content')
 <div class="container d-flex justify-content-center">
     <div class="col-6">
