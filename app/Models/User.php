@@ -67,7 +67,11 @@ class User extends Authenticatable
         return $this->hasMany(TodoList::class, 'user_id', 'id');
     }
 
-    /** @return HasManyThrough  */
+    /**
+     * Eloquent relation that connects user to all their tasks.
+     *
+     * @return HasManyThrough
+     */
     public function tasks(): HasManyThrough
     {
         return $this->hasManyThrough(Task::class, TodoList::class, 'user_id', 'list_id', 'id', 'id');
