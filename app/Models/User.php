@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,17 +49,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /** @return string  */
     public function profilePicture(): string
     {
         return ($this->profile_picture) ? $this->profile_picture : "https://eu.ui-avatars.com/api/?size=200&name=" . $this->name;
     }
 
-    public function lists() //FIXME: Returns what?? :)
+    /** @return HasMany  */
+    public function lists(): HasMany
     {
         return $this->hasMany(TodoList::class, 'user_id', 'id');
     }
 
-    public function tasks() // FIXME: Returns what!?!?
+    /** @return HasManyThrough  */
+    public function tasks(): HasManyThrough
     {
         return $this->hasManyThrough(Task::class, TodoList::class, 'user_id', 'list_id', 'id', 'id');
     }

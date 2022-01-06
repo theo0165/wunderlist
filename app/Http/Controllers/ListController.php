@@ -6,20 +6,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TodoList;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\MassAssignmentException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use InvalidArgumentException;
+use LogicException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ListController extends Controller
 {
+    /** @return void  */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * @param string $id
+     * @return View|Factory
+     * @throws InvalidArgumentException
+     * @throws ModelNotFoundException
+     * @throws BindingResolutionException
+     */
     public function show(string $id): View|Factory
     {
         $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
@@ -30,6 +45,13 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param string $id
+     * @return View|Factory
+     * @throws InvalidArgumentException
+     * @throws ModelNotFoundException
+     * @throws BindingResolutionException
+     */
     public function edit(string $id): View|Factory
     {
         $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
@@ -39,6 +61,16 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param string $id
+     * @return Redirector|RedirectResponse|never
+     * @throws BindingResolutionException
+     * @throws InvalidArgumentException
+     * @throws ModelNotFoundException
+     * @throws MassAssignmentException
+     * @throws HttpException
+     * @throws NotFoundHttpException
+     */
     public function patch(string $id): Redirector|RedirectResponse|never
     {
         if (request()->has('title')) {
@@ -55,6 +87,14 @@ class ListController extends Controller
         }
     }
 
+    /**
+     * @param string $id
+     * @return Redirector|RedirectResponse
+     * @throws InvalidArgumentException
+     * @throws ModelNotFoundException
+     * @throws LogicException
+     * @throws BindingResolutionException
+     */
     public function delete(string $id): Redirector|RedirectResponse
     {
         $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();

@@ -7,21 +7,31 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\TodoList;
 use Auth;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\InvalidCastException;
+use Illuminate\Database\LazyLoadingViolationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Exists;
+use InvalidArgumentException;
+use LogicException;
 
 class NewTaskController extends Controller
 {
+    /** @return void  */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * @return View|Factory
+     * @throws BindingResolutionException
+     */
     public function show(): View|Factory
     {
         return view('newTask.show', [
@@ -30,6 +40,14 @@ class NewTaskController extends Controller
         ]);
     }
 
+    /**
+     * @return Redirector|RedirectResponse
+     * @throws BindingResolutionException
+     * @throws InvalidArgumentException
+     * @throws InvalidCastException
+     * @throws LazyLoadingViolationException
+     * @throws LogicException
+     */
     public function store(): Redirector|RedirectResponse
     {
         // https://laravel.com/docs/8.x/validation#specifying-a-custom-column-name

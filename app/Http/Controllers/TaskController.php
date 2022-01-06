@@ -6,22 +6,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TodoList;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\MassAssignmentException;
+use Illuminate\Database\Eloquent\InvalidCastException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\LazyLoadingViolationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
+use InvalidArgumentException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use LogicException;
 
 class TaskController extends Controller
 {
+    /** @return void  */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * @return View|Factory
+     * @throws BindingResolutionException
+     */
     public function index(): View|Factory
     {
         return view('task.index', [
@@ -29,6 +44,13 @@ class TaskController extends Controller
         ]);
     }
 
+    /**
+     * @param string $id
+     * @return View|Factory
+     * @throws InvalidArgumentException
+     * @throws ModelNotFoundException
+     * @throws BindingResolutionException
+     */
     public function show(string $id): View|Factory
     {
         $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();
@@ -39,6 +61,20 @@ class TaskController extends Controller
         ]);
     }
 
+    /**
+     * @param string $id
+     * @return Redirector|RedirectResponse|never
+     * @throws ModelNotFoundException
+     * @throws HttpException
+     * @throws NotFoundHttpException
+     * @throws BindingResolutionException
+     * @throws BadRequestException
+     * @throws MassAssignmentException
+     * @throws InvalidArgumentException
+     * @throws InvalidCastException
+     * @throws LazyLoadingViolationException
+     * @throws LogicException
+     */
     public function patch(string $id): Redirector|RedirectResponse|never
     {
         $task = Auth::user()->tasks()->firstOrFail(['tasks.*', 'todo_lists.user_id']);
@@ -83,6 +119,14 @@ class TaskController extends Controller
         return abort(400);
     }
 
+    /**
+     * @param string $id
+     * @return Redirector|RedirectResponse
+     * @throws InvalidArgumentException
+     * @throws ModelNotFoundException
+     * @throws LogicException
+     * @throws BindingResolutionException
+     */
     public function delete(string $id): Redirector|RedirectResponse
     {
         $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();

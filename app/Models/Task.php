@@ -7,6 +7,7 @@ namespace App\Models;
 use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
@@ -20,12 +21,14 @@ class Task extends Model
         'completed'
     ];
 
-    public function todoList() // FIXME: Returns what??? $this?
+    /** @return BelongsTo  */
+    public function todoList(): BelongsTo
     {
         return $this->belongsTo(TodoList::Class, 'list_id', 'id');
     }
 
     // https://stackoverflow.com/a/5438778
+    /** @return string  */
     private static function generateUUID(): string
     {
         $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
@@ -51,7 +54,8 @@ class Task extends Model
         });
     }
 
-    public function list() // FIXME: Returns what???
+    /** @return BelongsTo  */
+    public function list(): BelongsTo
     {
         return $this->belongsTo(TodoList::class, 'list_id', 'id');
     }

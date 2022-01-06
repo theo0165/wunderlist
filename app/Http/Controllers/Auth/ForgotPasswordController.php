@@ -10,16 +10,29 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use DB;
+use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use InvalidArgumentException;
 use Mail;
 use Str;
 
 class ForgotPasswordController extends Controller
 {
+    /**
+     * @return View|Factory
+     * @throws BindingResolutionException
+     */
     public function show(): View|Factory
     {
         return view('auth.passwords.forgot.show');
     }
 
+    /**
+     * @return View|Factory
+     * @throws BindingResolutionException
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
     public function send(): View|Factory
     {
         $data = request()->validate([

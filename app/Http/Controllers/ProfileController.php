@@ -8,21 +8,32 @@ use App\Models\Task;
 use App\Models\TodoList;
 use App\Models\User;
 use DB;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\MassAssignmentException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use InvalidArgumentException;
+use LogicException;
 
 class ProfileController extends Controller
 {
+    /** @return void  */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * @return View|Factory
+     * @throws QueryException
+     * @throws BindingResolutionException
+     */
     public function show(): View|Factory
     {
         // This function will count completed tasks, uncompleted tasks and number of lists all in one query, amazing
@@ -47,6 +58,12 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * @return Redirector|RedirectResponse
+     * @throws BindingResolutionException
+     * @throws MassAssignmentException
+     * @throws InvalidArgumentException
+     */
     public function patch(): Redirector|RedirectResponse
     {
         if (request()->has('user_update')) {
@@ -81,6 +98,11 @@ class ProfileController extends Controller
         }
     }
 
+    /**
+     * @return Redirector|RedirectResponse
+     * @throws LogicException
+     * @throws BindingResolutionException
+     */
     public function delete(): Redirector|RedirectResponse
     {
         $user = Auth::user();

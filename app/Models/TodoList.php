@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class TodoList extends Model
@@ -16,17 +18,20 @@ class TodoList extends Model
         'title'
     ];
 
-    public function user() //FIXME: Returns what?
+    /** @return BelongsTo  */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function tasks() //FIXME: Returns what?!?!?!
+    /** @return HasMany  */
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class, 'list_id', 'id');
     }
 
     // https://stackoverflow.com/a/5438778
+    /** @return string  */
     private static function generateUUID(): string
     {
         $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
@@ -42,6 +47,7 @@ class TodoList extends Model
         return substr($result, -5);
     }
 
+    /** @return never  */
     protected static function boot(): never
     {
         parent::boot();
