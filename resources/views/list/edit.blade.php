@@ -6,7 +6,7 @@
         <div class="col-3">
             <h1>Update list</h1>
             <div class="row">
-                <form action="{{ route('list.patch', $list->uuid) }}" method="POST">
+                <form action="{{ route('list.patch', Hashids::encode($list->id)) }}" method="POST">
                     @csrf
                     @method('PATCH')
 

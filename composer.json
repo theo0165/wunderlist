@@ -15,7 +15,8 @@
     "laravel/sanctum": "^2.11",
     "laravel/tinker": "^2.5",
     "laravel/ui": "^3.4",
-    "rap2hpoutre/laravel-log-viewer": "^2.0"
+    "rap2hpoutre/laravel-log-viewer": "^2.0",
+    "vinkla/hashids": "^9.1"
   },
   "require-dev": {
     "facade/ignition": "^2.5",

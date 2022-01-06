@@ -26,7 +26,7 @@
                                 <div class="col-2 pr-0 d-flex justify-content-center align-items-center checkbox-container">
                                     <form action="/task/{{ $task->uuid }}/edit" method="POST" class="complete-form">
                                         @csrf
-                                        <input type="hidden" name="uuid" value="{{ $task->uuid }}">
+                                        <input type="hidden" name="uuid" value="{{ Hashids::encode($task->id) }}">
                                         <input type="hidden" name="function" value="complete">
                                         <input type="checkbox" name="completed" {{ $task->completed ? "checked" : "" }}>
                                     </form>
@@ -44,7 +44,7 @@
                                 <p class="task-deadline d-inline-block mb-0">{{ date("d/m/y", strtotime($task->deadline)) }}</p>
                             @endif
                             <div class="task-actions d-inline-block d-flex align-items-center">
-                                <a href="/task/{{$task->uuid}}/delete">
+                                <a href="/task/{{Hashids::encode($task->id)}}/delete">
                                     <svg class="task-delete" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M3.75 18.4375C3.74813 18.6839 3.84404 18.9209 4.01671 19.0967C4.18937 19.2724 4.42469 19.3725 4.67105 19.375H15.3289C15.5753 19.3725 15.8106 19.2724 15.9833 19.0967C16.156 18.9209 16.2519 18.6839 16.25 18.4375V5.9375H3.75V18.4375ZM5 7.1875H15V18.125H5V7.1875Z" fill="currentColor"/>
                                         <path d="M6.5625 8.4375H7.8125V16.25H6.5625V8.4375Z" fill="currentColor"/>

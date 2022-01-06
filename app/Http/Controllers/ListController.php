@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TodoList;
+use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -39,7 +40,7 @@ class ListController extends Controller
      */
     public function show(string $id): View|Factory
     {
-        $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
+        $list = Auth::user()->lists()->where('id', Hashids::decode($id))->firstOrFail();
 
         return view('list.show', [
             'list' => $list,
@@ -58,7 +59,7 @@ class ListController extends Controller
      */
     public function edit(string $id): View|Factory
     {
-        $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
+        $list = Auth::user()->lists()->where('id', Hashids::decode($id))->firstOrFail();
 
         return view('list.edit', [
             'list' => $list
@@ -84,7 +85,7 @@ class ListController extends Controller
                 'title' => ['string', 'max:255']
             ]);
 
-            $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
+            $list = Auth::user()->lists()->where('id', Hashids::decode($id))->firstOrFail();
             $list->update(['title' => $data['title']]);
 
             return redirect(route('list.show', $id));
@@ -105,7 +106,7 @@ class ListController extends Controller
      */
     public function delete(string $id): Redirector|RedirectResponse
     {
-        $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
+        $list = Auth::user()->lists()->where('id', Hashids::decode($id))->firstOrFail();
 
         # Delete all tasks when deleting list.
         foreach ($list->tasks as $task) {

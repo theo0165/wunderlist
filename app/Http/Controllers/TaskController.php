@@ -24,6 +24,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use LogicException;
+use Vinkla\Hashids\Facades\Hashids;
 
 class TaskController extends Controller
 {
@@ -57,7 +58,7 @@ class TaskController extends Controller
      */
     public function show(string $id): View|Factory
     {
-        $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();
+        $task = Auth::user()->tasks()->where('tasks.id', Hashids::decode($id))->firstOrFail();
 
         return view('task.show', [
             'task' => $task,
@@ -84,7 +85,7 @@ class TaskController extends Controller
     public function patch(string $id): Redirector|RedirectResponse
     {
         // Get task with uuid $id and user id from it's todo list.
-        $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail(['tasks.*', 'todo_lists.user_id']);
+        $task = Auth::user()->tasks()->where('tasks.id', Hashids::decode($id))->firstOrFail(['tasks.*', 'todo_lists.user_id']);
 
         if ($task === null) {
             return abort(404);
@@ -100,6 +101,12 @@ class TaskController extends Controller
 
             return abort(202);
         } else if (request()->has('function') && request()->get('function') === "edit") {
+            if (request()->has('list')) {
+                request()->merge([
+                    'list' => Hashids::decode(request()->get('list'))
+                ]);
+            }
+
             $data = request()->validate([
                 'title' => ['required', 'string', 'max:255'],
                 'description' => ['string'],
@@ -107,7 +114,7 @@ class TaskController extends Controller
                 'list' => [
                     'required', 'string', 'max:5',
                     // Check if list exists in database and if current user owns it.
-                    Rule::exists('todo_lists', 'uuid')->where(function ($query) {
+                    Rule::exists('todo_lists', 'id')->where(function ($query) {
                         return $query->where('user_id', Auth::user()->id);
                     })
                 ]
@@ -118,7 +125,7 @@ class TaskController extends Controller
                 'description' => $data['description'],
                 'deadline' => $data['deadline'],
                 // Translate uuid to id before placing in database
-                'list_id' => TodoList::where('uuid', $data['list'])->first('id')['id']
+                'list_id' => TodoList::where('id', $data['list'])->first('id')['id']
             ]);
 
             return redirect()->back();
@@ -141,7 +148,7 @@ class TaskController extends Controller
      */
     public function delete(string $id): Redirector|RedirectResponse
     {
-        $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();
+        $task = Auth::user()->tasks()->where('tasks.id', Hasids::decode($id))->firstOrFail();
 
         $task->delete();
 

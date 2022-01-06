@@ -54,6 +54,12 @@ class NewTaskController extends Controller
      */
     public function store(): Redirector|RedirectResponse
     {
+        if (request()->has('list')) {
+            request()->merge([
+                'list' => Hashids::encode(request()->get('list'))
+            ]);
+        }
+
         // https://laravel.com/docs/8.x/validation#specifying-a-custom-column-name
         $data = request()->validate([
             'title' => ['required', 'string', 'max:255'],
@@ -62,7 +68,7 @@ class NewTaskController extends Controller
             'list' => [
                 'required', 'string', 'max:5',
                 // Check if list exists in database and if current user owns said list.
-                Rule::exists('todo_lists', 'uuid')->where(function ($query) {
+                Rule::exists('todo_lists', 'id')->where(function ($query) {
                     return $query->where('user_id', Auth::user()->id);
                 })
             ]
@@ -73,9 +79,9 @@ class NewTaskController extends Controller
             'description' => $data['description'],
             'deadline' => $data['deadline'],
             // Translate uuid to id before placing new list in database.
-            'list_id' => TodoList::where('uuid', $data['list'])->first('id')['id']
+            'list_id' => TodoList::where('id', $data['list'])->first('id')['id']
         ]);
 
-        return redirect(route('list.show', $data['list']));
+        return redirect(route('list.show', Hashids::encode($data['list'])));
     }
 }
