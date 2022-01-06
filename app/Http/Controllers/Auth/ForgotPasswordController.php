@@ -9,7 +9,6 @@ use App\Mail\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
-
 use DB;
 use Mail;
 use Str;
