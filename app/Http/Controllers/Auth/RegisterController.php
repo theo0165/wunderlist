@@ -22,6 +22,8 @@ use RuntimeException;
 class RegisterController extends Controller
 {
     /**
+     * Display register page.
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      */
@@ -31,6 +33,8 @@ class RegisterController extends Controller
     }
 
     /**
+     * Register user, validate form data and save new user to database. Then login the user and redirect home.
+     *
      * @return Redirector|RedirectResponse
      * @throws BindingResolutionException
      * @throws InvalidArgumentException

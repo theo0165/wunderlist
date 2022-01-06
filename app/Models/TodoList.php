@@ -18,13 +18,21 @@ class TodoList extends Model
         'title'
     ];
 
-    /** @return BelongsTo  */
+    /**
+     * Eloquent relation that connects todo list to owner.
+     *
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    /** @return HasMany  */
+    /**
+     * Eloquent relation that connects todo list with all child tasks
+     *
+     * @return HasMany
+     */
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class, 'list_id', 'id');
@@ -48,7 +56,7 @@ class TodoList extends Model
     }
 
     /** @return never  */
-    protected static function boot(): never
+    protected static function boot()
     {
         parent::boot();
 

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
 use LogicException;
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -30,6 +31,8 @@ class ProfileController extends Controller
     }
 
     /**
+     * Display profile page
+     *
      * @return View|Factory
      * @throws QueryException
      * @throws BindingResolutionException
@@ -59,6 +62,8 @@ class ProfileController extends Controller
     }
 
     /**
+     * Update profile variables in database from form data.
+     *
      * @return Redirector|RedirectResponse
      * @throws BindingResolutionException
      * @throws MassAssignmentException
@@ -77,6 +82,11 @@ class ProfileController extends Controller
                 $imagePath = request('profile_picture')->store('uploads/profile', 'public');
 
                 $data['profile_picture'] = "/storage/" . $imagePath;
+
+                if (Auth::user()->profile_picture != null) {
+                    // Delete old profile picture
+                    Storage::delete(str_replace('/storage', '/public', Auth::user()->profile_picture));
+                }
 
                 Auth::user()->update($data);
             }
@@ -99,6 +109,8 @@ class ProfileController extends Controller
     }
 
     /**
+     * Delete current user along with all their lists and tasks.
+     *
      * @return Redirector|RedirectResponse
      * @throws LogicException
      * @throws BindingResolutionException

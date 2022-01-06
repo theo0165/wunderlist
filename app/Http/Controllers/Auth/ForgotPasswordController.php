@@ -19,6 +19,8 @@ use Str;
 class ForgotPasswordController extends Controller
 {
     /**
+     * Display forgot password page.
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      */
@@ -28,6 +30,8 @@ class ForgotPasswordController extends Controller
     }
 
     /**
+     * Send password reset email and display success page.
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      * @throws Exception

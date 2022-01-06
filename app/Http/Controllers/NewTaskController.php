@@ -29,6 +29,8 @@ class NewTaskController extends Controller
     }
 
     /**
+     * Display create new task page.
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      */
@@ -41,6 +43,8 @@ class NewTaskController extends Controller
     }
 
     /**
+     * Create new task from form data.
+     *
      * @return Redirector|RedirectResponse
      * @throws BindingResolutionException
      * @throws InvalidArgumentException
@@ -57,6 +61,7 @@ class NewTaskController extends Controller
             'deadline' => ['date', 'nullable'],
             'list' => [
                 'required', 'string', 'max:5',
+                // Check if list exists in database and if current user owns said list.
                 Rule::exists('todo_lists', 'uuid')->where(function ($query) {
                     return $query->where('user_id', Auth::user()->id);
                 })
@@ -67,6 +72,7 @@ class NewTaskController extends Controller
             'title' => $data['title'],
             'description' => $data['description'],
             'deadline' => $data['deadline'],
+            // Translate uuid to id before placing new list in database.
             'list_id' => TodoList::where('uuid', $data['list'])->first('id')['id']
         ]);
 

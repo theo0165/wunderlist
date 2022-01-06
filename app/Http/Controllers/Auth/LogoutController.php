@@ -16,6 +16,8 @@ use RuntimeException;
 class LogoutController extends Controller
 {
     /**
+     * Logout user and redirect back home
+     *
      * @return Redirector|RedirectResponse
      * @throws RuntimeException
      * @throws Exception

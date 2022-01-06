@@ -49,13 +49,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /** @return string  */
+    /**
+     * Return profile picture if it exists in database, otherwise return generic profile picture
+     *
+     * @return string  */
     public function profilePicture(): string
     {
         return ($this->profile_picture) ? $this->profile_picture : "https://eu.ui-avatars.com/api/?size=200&name=" . $this->name;
     }
 
-    /** @return HasMany  */
+    /**
+     * Eloquent relation that connects user with all their todo lists
+     *
+     * @return HasMany  */
     public function lists(): HasMany
     {
         return $this->hasMany(TodoList::class, 'user_id', 'id');

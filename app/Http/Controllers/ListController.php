@@ -29,6 +29,8 @@ class ListController extends Controller
     }
 
     /**
+     * Display single list page with uuid of $id. Throw 404 if list does not exist or user is unauthorized
+     *
      * @param string $id
      * @return View|Factory
      * @throws InvalidArgumentException
@@ -46,6 +48,8 @@ class ListController extends Controller
     }
 
     /**
+     * Display edit page for single list. Throw 404 if user is unauthorized.
+     *
      * @param string $id
      * @return View|Factory
      * @throws InvalidArgumentException
@@ -62,6 +66,8 @@ class ListController extends Controller
     }
 
     /**
+     * Update list in database.
+     *
      * @param string $id
      * @return Redirector|RedirectResponse|never
      * @throws BindingResolutionException
@@ -71,7 +77,7 @@ class ListController extends Controller
      * @throws HttpException
      * @throws NotFoundHttpException
      */
-    public function patch(string $id): Redirector|RedirectResponse|never
+    public function patch(string $id): Redirector|RedirectResponse
     {
         if (request()->has('title')) {
             $data = request()->validate([
@@ -88,6 +94,8 @@ class ListController extends Controller
     }
 
     /**
+     * Delete single list.
+     *
      * @param string $id
      * @return Redirector|RedirectResponse
      * @throws InvalidArgumentException

@@ -16,6 +16,8 @@ use RuntimeException;
 class LoginController extends Controller
 {
     /**
+     * Display login page
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      */
@@ -25,6 +27,8 @@ class LoginController extends Controller
     }
 
     /**
+     * Attempt to login user and redirect home if successfull, else redirect to login page with error.
+     *
      * @return Redirector|RedirectResponse
      * @throws BindingResolutionException
      * @throws RuntimeException

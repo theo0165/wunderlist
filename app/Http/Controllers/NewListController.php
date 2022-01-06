@@ -23,6 +23,8 @@ class NewListController extends Controller
     }
 
     /**
+     * Display create new list page.
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      */
@@ -32,6 +34,8 @@ class NewListController extends Controller
     }
 
     /**
+     * Create new list from form data and redirect to newly created list
+     *
      * @return Redirector|RedirectResponse
      * @throws BindingResolutionException
      * @throws InvalidArgumentException

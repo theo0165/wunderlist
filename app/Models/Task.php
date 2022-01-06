@@ -21,12 +21,6 @@ class Task extends Model
         'completed'
     ];
 
-    /** @return BelongsTo  */
-    public function todoList(): BelongsTo
-    {
-        return $this->belongsTo(TodoList::Class, 'list_id', 'id');
-    }
-
     // https://stackoverflow.com/a/5438778
     /** @return string  */
     private static function generateUUID(): string
@@ -44,7 +38,12 @@ class Task extends Model
         return substr($result, -5);
     }
 
-    protected static function boot(): never
+    /**
+     * Create uuid for task when created
+     *
+     * @return never
+     */
+    protected static function boot()
     {
         parent::boot();
 
@@ -54,7 +53,11 @@ class Task extends Model
         });
     }
 
-    /** @return BelongsTo  */
+    /**
+     * Eloquent relationship that connects task to parent todo list
+     *
+     * @return BelongsTo
+     */
     public function list(): BelongsTo
     {
         return $this->belongsTo(TodoList::class, 'list_id', 'id');

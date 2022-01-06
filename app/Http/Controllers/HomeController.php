@@ -24,6 +24,8 @@ class HomeController extends Controller
     }
 
     /**
+     * Display home page
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      */

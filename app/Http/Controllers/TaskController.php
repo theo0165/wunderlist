@@ -34,6 +34,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Display all tasks belonging to current user
+     *
      * @return View|Factory
      * @throws BindingResolutionException
      */
@@ -45,6 +47,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Display edit page for single task.
+     *
      * @param string $id
      * @return View|Factory
      * @throws InvalidArgumentException
@@ -62,6 +66,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Update task variables in database.
+     *
      * @param string $id
      * @return Redirector|RedirectResponse|never
      * @throws ModelNotFoundException
@@ -75,14 +81,16 @@ class TaskController extends Controller
      * @throws LazyLoadingViolationException
      * @throws LogicException
      */
-    public function patch(string $id): Redirector|RedirectResponse|never
+    public function patch(string $id): Redirector|RedirectResponse
     {
-        $task = Auth::user()->tasks()->firstOrFail(['tasks.*', 'todo_lists.user_id']);
+        // Get task with uuid $id and user id from it's todo list.
+        $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail(['tasks.*', 'todo_lists.user_id']);
 
         if ($task === null) {
             return abort(404);
         }
 
+        // Mark task as completed or uncompleted
         if (request()->has('function') && request()->get('function') === "complete") {
             $data = request()->validate([
                 'completed' => ['string']
@@ -98,6 +106,7 @@ class TaskController extends Controller
                 'deadline' => ['date', 'nullable'],
                 'list' => [
                     'required', 'string', 'max:5',
+                    // Check if list exists in database and if current user owns it.
                     Rule::exists('todo_lists', 'uuid')->where(function ($query) {
                         return $query->where('user_id', Auth::user()->id);
                     })
@@ -108,6 +117,7 @@ class TaskController extends Controller
                 'title' => $data['title'],
                 'description' => $data['description'],
                 'deadline' => $data['deadline'],
+                // Translate uuid to id before placing in database
                 'list_id' => TodoList::where('uuid', $data['list'])->first('id')['id']
             ]);
 
@@ -120,6 +130,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Delete single task
+     *
      * @param string $id
      * @return Redirector|RedirectResponse
      * @throws InvalidArgumentException

@@ -20,6 +20,8 @@ use InvalidArgumentException;
 class ResetPasswordController extends Controller
 {
     /**
+     * Display reset password page.
+     *
      * @param string $token
      * @return View|Factory
      * @throws BindingResolutionException
@@ -32,6 +34,8 @@ class ResetPasswordController extends Controller
     }
 
     /**
+     * Reset user password if token is valid and password is confirmed.
+     *
      * @return Redirector|RedirectResponse
      * @throws BindingResolutionException
      * @throws InvalidArgumentException
@@ -44,14 +48,17 @@ class ResetPasswordController extends Controller
             'token' => ['required', 'string', 'size:64', 'exists:password_resets']
         ]);
 
+        // Get reset token data from database, email, token and date.
         $resetData = DB::table('password_resets')->where('token', '=', $data['token'])->first();
 
+        // Get user with email corresponding to email in reset data.
         $user = User::where('email', $resetData->email)->first();
 
         $user->update([
             'password' => Hash::make($data['password'])
         ]);
 
+        // Delete token from database so it can't be used again.
         DB::table('password_resets')->where('token', '=', $data['token'])->delete();
 
         return redirect('/login')->with('password_reset', 'Password has been reset!');

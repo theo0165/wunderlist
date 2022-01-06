@@ -21,6 +21,8 @@ class TodayController extends Controller
     }
 
     /**
+     * Display page with all tasks that have a deadline today.
+     *
      * @return View|Factory
      * @throws InvalidArgumentException
      * @throws BindingResolutionException
