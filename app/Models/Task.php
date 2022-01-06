@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Auth;
@@ -18,13 +20,13 @@ class Task extends Model
         'completed'
     ];
 
-    public function todoList()
+    public function todoList() // FIXME: Returns what??? $this?
     {
         return $this->belongsTo(TodoList::Class, 'list_id', 'id');
     }
 
     // https://stackoverflow.com/a/5438778
-    private static function generateUUID()
+    private static function generateUUID(): string
     {
         $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
         $base = strlen($charset);
@@ -39,7 +41,7 @@ class Task extends Model
         return substr($result, -5);
     }
 
-    protected static function boot()
+    protected static function boot(): never
     {
         parent::boot();
 
@@ -49,7 +51,7 @@ class Task extends Model
         });
     }
 
-    public function list()
+    public function list() // FIXME: Returns what???
     {
         return $this->belongsTo(TodoList::class, 'list_id', 'id');
     }

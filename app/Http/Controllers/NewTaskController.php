@@ -1,17 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TodoList;
 use Auth;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Exists;
 
 class NewTaskController extends Controller
 {
-    public function show()
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function show(): View|Factory
     {
         return view('newTask.show', [
             'lists' => Auth::user()->lists,
@@ -19,7 +30,7 @@ class NewTaskController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(): Redirector|RedirectResponse
     {
         // https://laravel.com/docs/8.x/validation#specifying-a-custom-column-name
         $data = request()->validate([

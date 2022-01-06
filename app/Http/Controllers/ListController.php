@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TodoList;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class ListController extends Controller
@@ -14,7 +20,7 @@ class ListController extends Controller
         $this->middleware('auth');
     }
 
-    public function show(string $id)
+    public function show(string $id): View|Factory
     {
         $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
 
@@ -24,7 +30,7 @@ class ListController extends Controller
         ]);
     }
 
-    public function edit(string $id)
+    public function edit(string $id): View|Factory
     {
         $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
 
@@ -33,7 +39,7 @@ class ListController extends Controller
         ]);
     }
 
-    public function patch(string $id)
+    public function patch(string $id): Redirector|RedirectResponse|never
     {
         if (request()->has('title')) {
             $data = request()->validate([
@@ -49,7 +55,7 @@ class ListController extends Controller
         }
     }
 
-    public function delete(string $id)
+    public function delete(string $id): Redirector|RedirectResponse
     {
         $list = Auth::user()->lists()->where('uuid', $id)->firstOrFail();
 

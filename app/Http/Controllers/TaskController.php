@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TodoList;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
@@ -16,14 +22,14 @@ class TaskController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(): View|Factory
     {
         return view('task.index', [
             'tasks' => Auth::user()->tasks
         ]);
     }
 
-    public function show(string $id)
+    public function show(string $id): View|Factory
     {
         $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();
 
@@ -33,7 +39,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function patch(string $id)
+    public function patch(string $id): Redirector|RedirectResponse|never
     {
         $task = Auth::user()->tasks()->firstOrFail(['tasks.*', 'todo_lists.user_id']);
 
@@ -77,7 +83,7 @@ class TaskController extends Controller
         return abort(400);
     }
 
-    public function delete(string $id)
+    public function delete(string $id): Redirector|RedirectResponse
     {
         $task = Auth::user()->tasks()->where('tasks.uuid', $id)->firstOrFail();
 

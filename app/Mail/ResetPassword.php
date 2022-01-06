@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -27,7 +29,7 @@ class ResetPassword extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): this;
     {
         return $this->subject('Wunderlist: Reset password')->view('auth.passwords.reset.email', [
             'token' => $this->token

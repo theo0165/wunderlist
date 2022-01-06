@@ -1,22 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ResetPassword;
-use DB;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+
+use DB;
 use Mail;
 use Str;
 
 class ForgotPasswordController extends Controller
 {
-    public function show()
+    public function show(): View|Factory
     {
         return view('auth.passwords.forgot.show');
     }
 
-    public function send()
+    public function send(): View|Factory
     {
         $data = request()->validate([
             'email' => ['required', 'email']

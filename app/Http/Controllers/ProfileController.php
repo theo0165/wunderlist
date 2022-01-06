@@ -1,12 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\TodoList;
 use App\Models\User;
 use DB;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +23,7 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    public function show()
+    public function show(): View|Factory
     {
         // This function will count completed tasks, uncompleted tasks and number of lists all in one query, amazing
         $userId = Auth::user()->id;
@@ -41,7 +47,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function patch()
+    public function patch(): Redirector|RedirectResponse
     {
         if (request()->has('user_update')) {
             $data = request()->validate([
@@ -75,7 +81,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function delete()
+    public function delete(): Redirector|RedirectResponse
     {
         $user = Auth::user();
 

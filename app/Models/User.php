@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -45,17 +47,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function profilePicture()
+    public function profilePicture(): string
     {
         return ($this->profile_picture) ? $this->profile_picture : "https://eu.ui-avatars.com/api/?size=200&name=" . $this->name;
     }
 
-    public function lists()
+    public function lists() //FIXME: Returns what?? :)
     {
         return $this->hasMany(TodoList::class, 'user_id', 'id');
     }
 
-    public function tasks()
+    public function tasks() // FIXME: Returns what!?!?
     {
         return $this->hasManyThrough(Task::class, TodoList::class, 'user_id', 'list_id', 'id', 'id');
     }
