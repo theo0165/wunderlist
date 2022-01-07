@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use InvalidArgumentException;
+use Vinkla\Hashids\Facades\Hashids;
 
 class NewListController extends Controller
 {
@@ -51,6 +52,6 @@ class NewListController extends Controller
 
         $list->save();
 
-        return redirect("/list/" . $list->uuid);
+        return redirect("/list/" . Hashids::encode($list->id));
     }
 }

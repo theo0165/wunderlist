@@ -103,7 +103,7 @@ class TaskController extends Controller
         } else if (request()->has('function') && request()->get('function') === "edit") {
             if (request()->has('list')) {
                 request()->merge([
-                    'list' => Hashids::decode(request()->get('list'))
+                    'list' => strval(Hashids::decode(request()->get('list'))[0])
                 ]);
             }
 
@@ -124,8 +124,7 @@ class TaskController extends Controller
                 'title' => $data['title'],
                 'description' => $data['description'],
                 'deadline' => $data['deadline'],
-                // Translate uuid to id before placing in database
-                'list_id' => TodoList::where('id', $data['list'])->first('id')['id']
+                'list_id' => $data['list']
             ]);
 
             return redirect()->back();

@@ -18,6 +18,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Exists;
 use InvalidArgumentException;
+use Vinkla\Hashids\Facades\Hashids;
 use LogicException;
 
 class NewTaskController extends Controller
@@ -56,7 +57,7 @@ class NewTaskController extends Controller
     {
         if (request()->has('list')) {
             request()->merge([
-                'list' => Hashids::encode(request()->get('list'))
+                'list' => strval(Hashids::decode(request()->get('list'))[0])
             ]);
         }
 
@@ -78,8 +79,7 @@ class NewTaskController extends Controller
             'title' => $data['title'],
             'description' => $data['description'],
             'deadline' => $data['deadline'],
-            // Translate uuid to id before placing new list in database.
-            'list_id' => TodoList::where('id', $data['list'])->first('id')['id']
+            'list_id' => $data['list']
         ]);
 
         return redirect(route('list.show', Hashids::encode($data['list'])));
