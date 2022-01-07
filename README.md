@@ -34,8 +34,6 @@ TODO: Tasks always comparing to GMT/UTC on todays deadline page...
 
 TODO: Mobile optimization.
 
-TODO: Comment code, ensure strict types, etc.
-
 -   As a user I should be able to create an account. :white_check_mark:
 
 -   As a user I should be able to login. :white_check_mark:

@@ -82,6 +82,6 @@ class NewTaskController extends Controller
             'list_id' => $data['list']
         ]);
 
-        return redirect(route('list.show', Hashids::encode($data['list'])));
+        return redirect(route('list.show', Hashids::encode($data['list'])), 201);
     }
 }

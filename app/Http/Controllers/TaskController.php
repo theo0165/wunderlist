@@ -109,7 +109,7 @@ class TaskController extends Controller
 
             $data = request()->validate([
                 'title' => ['required', 'string', 'max:255'],
-                'description' => ['string'],
+                'description' => ['string', 'nullable'],
                 'deadline' => ['date', 'nullable'],
                 'list' => [
                     'required', 'string', 'max:5',
@@ -147,7 +147,7 @@ class TaskController extends Controller
      */
     public function delete(string $id): Redirector|RedirectResponse
     {
-        $task = Auth::user()->tasks()->where('tasks.id', Hasids::decode($id))->firstOrFail();
+        $task = Auth::user()->tasks()->where('tasks.id', Hashids::decode($id))->firstOrFail();
 
         $task->delete();
 
