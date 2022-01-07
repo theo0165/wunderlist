@@ -63,7 +63,7 @@ class TaskTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->from('/list/' . Hashids::encode($task->id))
+            ->from('/list/' . Hashids::encode($list->id))
             ->post(
                 '/task/' . Hashids::encode($task->id) . '/edit',
                 [

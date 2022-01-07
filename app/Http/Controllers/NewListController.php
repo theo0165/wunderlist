@@ -52,6 +52,6 @@ class NewListController extends Controller
 
         $list->save();
 
-        return redirect("/list/" . Hashids::encode($list->id));
+        return redirect("/list/" . Hashids::encode($list->id), 201);
     }
 }
