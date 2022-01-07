@@ -21,38 +21,6 @@ class Task extends Model
         'completed'
     ];
 
-    // https://stackoverflow.com/a/5438778
-    /** @return string  */
-    private static function generateUUID(): string
-    {
-        $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
-        $base = strlen($charset);
-        $result = '';
-
-        $now = explode(' ', microtime())[1];
-        while ($now >= $base) {
-            $i = $now % $base;
-            $result = $charset[$i] . $result;
-            $now /= $base;
-        }
-        return substr($result, -5);
-    }
-
-    /**
-     * Create uuid for task when created
-     *
-     * @return never
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        // Set uuid and user id values when item is created
-        static::creating(function ($query) {
-            $query->uuid = self::generateUUID();
-        });
-    }
-
     /**
      * Eloquent relationship that connects task to parent todo list
      *
