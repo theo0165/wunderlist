@@ -13,6 +13,10 @@ class Task extends Model
 {
     use HasFactory;
 
+    public $casts = [
+        'completed' => 'boolean'
+    ];
+
     public $fillable = [
         'title',
         'description',
