@@ -30,8 +30,6 @@ Tested by the following people:
 1. Jane Doe
 2. John Doe
 
-TODO: Tasks always comparing to GMT/UTC on todays deadline page...
-
 TODO: Mobile optimization.
 
 -   As a user I should be able to create an account. :white_check_mark:
