@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use Vinkla\Hashids\Facades\Hashids;
 
 class TodoList extends Model
 {
@@ -46,5 +47,15 @@ class TodoList extends Model
         static::creating(function ($query) {
             $query->user_id = Auth::user()->id;
         });
+    }
+
+    /**
+     * Get hased id for use in urls
+     *
+     * @return string
+     */
+    public function getHashId(): string
+    {
+        return Hashids::encode($this->id);
     }
 }

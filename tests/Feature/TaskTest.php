@@ -35,10 +35,10 @@ class TaskTest extends TestCase
             'title' => 'Test task',
             'description' => 'Test task description',
             'deadline' => date('Y-m-d', strtotime('tomorrow')),
-            'list' => Hashids::encode($list->id)
+            'list' => $list->getHashId()
         ]);
 
-        $response->assertRedirect('/list/' . Hashids::encode($list->id))->assertStatus(201);
+        $response->assertRedirect('/list/' . $list->getHashId())->assertStatus(201);
     }
 
     public function test_can_edit_task()
@@ -63,14 +63,14 @@ class TaskTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->from('/list/' . Hashids::encode($list->id))
+            ->from('/list/' . $list->getHashId())
             ->post(
-                '/task/' . Hashids::encode($task->id) . '/edit',
+                '/task/' . $task->getHashId() . '/edit',
                 [
                     'title' => 'Updated title',
                     'description' => 'Updated Description',
                     'deadline' => date('Y-m-d', strtotime('tomorrow')),
-                    'list' => Hashids::encode($list->id),
+                    'list' => $list->getHashId(),
                     'function' => 'edit'
                 ]
             );
@@ -100,9 +100,9 @@ class TaskTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->from('/list/' . Hashids::encode($task->id))
+            ->from('/list/' . $task->getHashId())
             ->post(
-                '/task/' . Hashids::encode($task->id) . '/edit',
+                '/task/' . $task->getHashId() . '/edit',
                 [
                     'completed' => 'on',
                     'function' => 'complete'
@@ -134,9 +134,9 @@ class TaskTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->from('/list/' . Hashids::encode($task->id))
-            ->get('/task/' . Hashids::encode($task->id) . '/delete');
+            ->from('/list/' . $task->getHashId())
+            ->get('/task/' . $task->getHashId() . '/delete');
 
-        $response->assertRedirect('/list/' . Hashids::encode($task->id));
+        $response->assertRedirect('/list/' . $task->getHashId());
     }
 }

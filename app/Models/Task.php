@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Task extends Model
 {
@@ -33,5 +34,15 @@ class Task extends Model
     public function list(): BelongsTo
     {
         return $this->belongsTo(TodoList::class, 'list_id', 'id');
+    }
+
+    /**
+     * Get hased id for use in urls
+     *
+     * @return string
+     */
+    public function getHashId(): string
+    {
+        return Hashids::encode($this->id);
     }
 }

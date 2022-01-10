@@ -6,7 +6,7 @@
         <div class="col-4">
             <h1>Edit task</h1>
             <div class="row">
-                <form action="{{ route('task.patch', Hashids::encode($task->id)) }}" method="POST">
+                <form action="{{ route('task.patch', $task->getHashId()) }}" method="POST">
                     @csrf
                     <input type="hidden" name="function" value="edit">
 
@@ -55,7 +55,7 @@
                         <div class="col-8">
                             <select name="list" id="list" class="form-control @error('list') is-invalid @enderror">
                                 @foreach ($lists as $list)
-                                    <option value="{{ Hashids::encode($list->id) }}" {{ ($task->list_id === $list->id) ? "selected" : "" }}>{{$list->title}}</option>
+                                    <option value="{{ $list->getHashId() }}" {{ ($task->list_id === $list->id) ? "selected" : "" }}>{{$list->title}}</option>
                                 @endforeach
                             </select>
                             @error('list')

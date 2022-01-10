@@ -50,7 +50,7 @@
                             <div class="col-8">
                                 <select name="list" id="list" class="form-control @error('list') is-invalid @enderror">
                                     @foreach ($lists as $list)
-                                        <option value="{{ Hashids::encode($list->id) }}" {{ (isset($selectedList) && $selectedList === Hashids::encode($list->id)) ? "selected" : "" }}>{{$list->title}}</option>
+                                        <option value="{{ $list->getHashId() }}" {{ (isset($selectedList) && $selectedList === $list->getHashId()) ? "selected" : "" }}>{{$list->title}}</option>
                                     @endforeach
                                 </select>
                                 @error('list')

@@ -49,15 +49,15 @@ class ListTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->from('/list/' . Hashids::encode($list->id))
+            ->from('/list/' . $list->getHashId())
             ->patch(
-                '/list/' . Hashids::encode($list->id) . '/edit',
+                '/list/' . $list->getHashId() . '/edit',
                 [
                     'title' => 'Updated title'
                 ]
             );
 
-        $response->assertRedirect('/list/' . Hashids::encode($list->id));
+        $response->assertRedirect('/list/' . $list->getHashId());
     }
 
     public function test_can_delete_list()
@@ -75,8 +75,8 @@ class ListTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->from('/list/' . Hashids::encode($list->id))
-            ->get('/list/' . Hashids::encode($list->id) . '/delete');
+            ->from('/list/' . $list->getHashId())
+            ->get('/list/' . $list->getHashId() . '/delete');
 
         $response->assertRedirect('/');
     }
