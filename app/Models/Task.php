@@ -37,7 +37,7 @@ class Task extends Model
     }
 
     /**
-     * Get hased id for use in urls
+     * Get hased id for use in url
      *
      * @return string
      */
