@@ -18,22 +18,22 @@ Small todo list website created in Laravel 8.
       ```
     - Open the .env file and add the database name, username and password. You can also add mail host, username and password if you wish. Without this the reset password will not work.
     - Close the .env file
-4. Generate application key.
-    - ```bash
-      php artisan key:generate
-      ```
-5. Create symbolic links for uploads.
-    - ```bash
-      php artisan storage:link
-      ```
-6. Run migrations to create database structure.
-    - ```bash
-      php artisan migrate:fresh
-      ```
-7. Install dependencies for php and node.js
+4. Install dependencies for php and node.js
     - ```bash
       composer install
       npm install
+      ```
+5. Generate application key.
+    - ```bash
+      php artisan key:generate
+      ```
+6. Create symbolic links for uploads.
+    - ```bash
+      php artisan storage:link
+      ```
+7. Run migrations to create database structure.
+    - ```bash
+      php artisan migrate:fresh
       ```
 8. Build javascript and css files
     - ```bash
