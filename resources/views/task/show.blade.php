@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-xl-4 col-md-6 col-10">
             <h1>Edit task</h1>
             <div class="row">
                 <form action="{{ route('task.patch', $task->getHashId()) }}" method="POST">

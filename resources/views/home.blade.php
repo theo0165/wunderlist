@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-xl-6 col-9">
             <div class="row">
                 <div class="col-8">
                     <h1>{{ (substr($user->name, -1) === "s") ? $user->name : $user->name . "'s" }} lists</h1>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-xl-6 col-9">
             <h1>New task</h1>
             <div class="row">
                 @if (count($lists) === 0)

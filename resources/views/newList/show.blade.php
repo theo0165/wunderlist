@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-3">
+        <div class="col-md-4 col-9">
             <h1>New list</h1>
             <div class="row">
                 <form action="{{ route('newList.store') }}" method="POST">

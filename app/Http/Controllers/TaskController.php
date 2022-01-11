@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\LazyLoadingViolationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -24,6 +25,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use LogicException;
+use Response;
 use Vinkla\Hashids\Facades\Hashids;
 
 class TaskController extends Controller
@@ -82,7 +84,7 @@ class TaskController extends Controller
      * @throws LazyLoadingViolationException
      * @throws LogicException
      */
-    public function patch(string $id): Redirector|RedirectResponse
+    public function patch(string $id): Redirector|RedirectResponse|HttpResponse
     {
         // Get task with uuid $id and user id from it's todo list.
         $task = Auth::user()->tasks()->where('tasks.id', Hashids::decode($id))->firstOrFail(['tasks.*', 'todo_lists.user_id']);
@@ -99,7 +101,7 @@ class TaskController extends Controller
 
             $task->update(['completed' => isset($data['completed']) ? true : false]);
 
-            return abort(202);
+            return response(status: 200);
         } else if (request()->has('function') && request()->get('function') === "edit") {
             if (request()->has('list')) {
                 request()->merge([

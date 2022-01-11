@@ -64,7 +64,7 @@ class NewTaskController extends Controller
         // https://laravel.com/docs/8.x/validation#specifying-a-custom-column-name
         $data = request()->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['string'],
+            'description' => ['string', 'nullable'],
             'deadline' => ['date', 'nullable'],
             'list' => [
                 'required', 'string', 'max:5',

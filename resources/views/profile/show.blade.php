@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-md-8 col-10">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
                     <img class="rounded-circle" src="{{ $user->profilePicture() }}" style="width:200px;height:200px;object-fit:cover;">

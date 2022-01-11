@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center">
-    <div class="col-6">
+    <div class="col-xl-6 col-9">
         <div class="row">
             <h1>Deadline today</h1>
         </div>

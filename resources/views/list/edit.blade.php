@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-3">
+        <div class="col-xl-4 col-md-6 col-10">
             <h1>Update list</h1>
             <div class="row">
                 <form action="{{ route('list.patch', $list->getHashId()) }}" method="POST">

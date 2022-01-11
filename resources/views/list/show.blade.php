@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center">
-    <div class="col-6">
+    <div class="col-xl-6 col-9">
         <div class="row d-flex justify-content-center">
             <div class="col-12 d-flex justify-content-between">
                 <div class="col-6 list-title">
@@ -48,7 +48,7 @@
                                 <div class="col-2 pr-0 d-flex justify-content-center align-items-center checkbox-container">
                                     <form action="/task/{{ $list->getHashId() }}/edit" method="POST" class="complete-form">
                                         @csrf
-                                        <input type="hidden" name="uuid" value="{{ $list->getHashId() }}">
+                                        <input type="hidden" name="uuid" value="{{ $task->getHashId() }}">
                                         <input type="hidden" name="function" value="complete">
                                         <input type="checkbox" name="completed" {{ $task->completed ? "checked" : "" }}>
                                     </form>
