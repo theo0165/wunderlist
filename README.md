@@ -48,18 +48,23 @@ Small todo list website created in Laravel 8.
 
 # Code Review
 
-Code review written by [Jane Doh](https://github.com/username).
+Code review written by [Patrik Staaf](https://github.com/patrikstaaf).
 
-1. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-2. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-3. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-4. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-5. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-6. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-7. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-8. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-9. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-10. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
+1. For readability it would be better to have middleware in routes rather than in each controller.
+2. Avoid using get request for deleting data.
+3. Instead of having “TaskController” and “NewTaskController” you could make use of the create and store method in the “TaskController”, maybe a resource controller next time?
+4. Instead of having “ListController” and “NewListController” you could make use of the create and store method in the “ListController”, maybe a resource controller next time?
+5. You could add logout as a destroy method in your LoginController (rename i.e. SessionController) to have one fewer controller.
+6. Instead of using raw query in your ProfileController, could this be solved with eloquent?
+7. Various imported namespaces not in use.
+8. For some reason a few shorthand namespaces don't seem to work for me, I had to add a full path for DB, Storage (this might be on my end though).
+9. Migrations: Instead of using unsignedBigInteger & index for fk you can use foreignId, $table->foreignId().
+10. Migrations: Instead of looping through to delete user data/list data you can set cascadeOnDelete (can also use constrained() to make db more consistent).
+11. profile/show.blade.php line 72, this route doesn't exist/abort 404 when trying to update password (use {{ route('profile.patch') }} instead).
+12. You could let the user know the password requirements when register before displaying an error message.
+
+Overall great job, some nifty features i.e. strikethrough and updating db with the checkbox, ability to change what list the task belongs to, although I’m not that fond of the use of vinkla/hashid (joking, amazing stuff).
+
 
 # Testers
 
