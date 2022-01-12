@@ -69,7 +69,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary mt-3" name="user_update">Update</button>
                 </form>
-                <form action="/profile/update" method="POST" class="pt-5">
+                <form action="{{ route('profile.patch') }}" method="POST" class="pt-5">
                     @csrf
                     @method("PATCH")
                     <h4>Update password</h4>
