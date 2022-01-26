@@ -12,18 +12,13 @@
 <div class="container d-flex justify-content-center">
     <div class="col-xl-6 col-9">
         <div class="row">
-            <h1>All tasks</h1>
-
-            <form action="{{ route('search.show') }}" method="get">
-                <label for="search">Search</label>
-                <input type="search" name="term" id="search">
-                <input type="submit" value="Find">
-            </form>
+            <h1>Search result</h1>
         </div>
         <hr class="m-1">
         <div class="col-12 pt-4">
             @if (count($tasks) === 0)
-            <h4 class="pt-3 d-flex justify-content-center">No tasks avalible, start by creating one <a href="{{ route('newTask.show') }}">here</a>.</h4>
+            <h4 class="pt-3 d-flex justify-content-center">No search results found.</h4>
+            <a href="{{route('task.index')}}" class="pt-3 d-flex justify-content-center">Go Back</a>
             @else
             @foreach ($tasks as $task)
             <div class="row mb-3 pb-3 task-container {{ $task->completed ? "completed" : "" }}">
