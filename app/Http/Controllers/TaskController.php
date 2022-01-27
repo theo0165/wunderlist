@@ -49,6 +49,16 @@ class TaskController extends Controller
         ]);
     }
 
+    public function search(Request $request): View|Factory
+    {
+        $term = $request->get('term');
+        $tasks = Auth::user()->tasks()->where('tasks.title', 'LIKE', '%' . $term . '%')->get();
+
+        return view('search.index', [
+            'tasks' => $tasks
+        ]);
+    }
+
     /**
      * Display edit page for single task.
      *
